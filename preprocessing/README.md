@@ -1,29 +1,28 @@
 # EEG preprocessing
 
-This directory contains the reproducible preprocessing workflow for the AVMoments-EEG recordings.
+`preprocess_eeg.ipynb` processes continuous BrainVision EEG into session epochs and participant-level post-ICA NoReject FIF/NumPy files.
 
-## Planned workflow
+## Setup
 
-1. Load each recording session and standardize channel metadata.
-2. Detect or import bad-channel annotations.
-3. Fit independent component analysis (ICA).
-4. Review and apply component-exclusion decisions.
-5. Filter, epoch, and align trials to the released event grid.
-6. Export cleaned epochs and stimulus-level ERP products used in validation.
+Use Python 3.12 and install the dependencies in `requirements.txt` in a dedicated environment. The pinned versions were read from the local EEG_MNE environment on 2026-09-12; they are not a recovered historical environment lock. Open the notebook in a Jupyter-compatible editor and use a desktop plotting backend for interactive figures.
 
-## Planned contents
+```bash
+python -m pip install -r requirements.txt
+```
 
-- `preprocess_sessions.py`: session-level preprocessing entry point.
-- `fit_ica.py`: ICA fitting and diagnostic export.
-- `apply_ica.py`: application of reviewed ICA exclusions.
-- `align_trial_grid.py`: alignment of cleaned epochs to the common trial grid.
-- `build_stimulus_level_erp.py`: construction of stimulus-level ERP products.
-- `preprocessing_config.yaml`: preprocessing parameters and paths.
-- `bad_channels.tsv`: reviewed bad-channel decisions.
-- `ica_exclusions.tsv`: reviewed ICA-component exclusions.
+## Run
 
-## Reproducibility notes
+1. Work from this directory. Set `DATA_ROOT` to the downloaded `BIDS_Data` folder and `OUTPUT_ROOT` to a separate results folder. The default relative input path matches the local Code_uploaded/Data layout and may need changing after download.
+2. Set `subid` (default: `sub-003zgf`), `SESSION_IDS`, and any `MANUAL_BADS_BY_SESSION` entries.
+3. Run the numbered cells in order through ICA inspection. After reviewing components, assign your list to `ICA_EXCLUDE` in a new code cell, then continue with ICA application. Do not rerun the initialization cell just to update this variable. `None` stops ICA application; use `[]` only after deciding that no components should be removed.
+4. Continue through referencing, plotting, and export. Existing FIF outputs are protected by `OVERWRITE=False`; enable overwriting only for an intended rerun. Figures and logs may be overwritten or appended during repeated execution.
 
-Record all thresholds, filters, reference choices, epoch windows, random seeds, and manual-review decisions. Generated EEG data should be written outside the Git repository.
+Events are read from BrainVision annotations. Corrections stored only in `_events.tsv` are not read, so this version does not cover the harmonized-event workflow for the first two participants. Input montage filenames must match the notebook's `_space-CapTrak_electrodes.tsv` convention.
 
-The scripts and configuration templates will be added after the study code has been cleaned, parameterized, and checked against the released dataset structure.
+## Outputs
+
+`OUTPUT_ROOT/Epoched_Data/<subject>/` contains session epochs and figures. `OUTPUT_ROOT/ICA/<subject>/` contains post-ICA FIF/NumPy data and figures. A participant processing log is saved under `OUTPUT_ROOT`.
+
+The workflow retains the source settings: 0.03-50 Hz filtering, a 50 Hz notch with 4 Hz width, 100 Hz sampling, -1.5 to 5 s epochs, a -0.1 to 0 s baseline, ICA fitted on a 1 Hz high-pass-filtered 0-3 s copy, and M1/M2 referencing.
+
+Fixed trial alignment, trial rejection, and stimulus-level ERP averaging are not included. A limited input and epoch-export check was performed; the complete eight-session filtering/PyPREP/ICA pipeline has not been rerun for this packaging update.

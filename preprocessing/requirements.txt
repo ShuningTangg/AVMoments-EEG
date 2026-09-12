@@ -1,0 +1,11 @@
+# Python 3.12; versions observed in EEG_MNE on 2026-09-12.
+# Direct analysis dependencies, not a complete transitive lock file.
+mne==1.11.0
+numpy==2.4.3
+pandas==3.0.1
+matplotlib==3.10.8
+pyprep==0.6.0
+scikit-learn==1.8.0
+scipy==1.17.1
+ipykernel==7.2.0
+# Use an existing Jupyter-compatible editor to open the notebook.

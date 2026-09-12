@@ -1,24 +1,41 @@
-# Experiment
+# AVMoments-EEG experiment
 
-This directory is reserved for the code used to run the AVMoments-EEG audiovisual event-perception experiment.
+PsychoPy code for video presentation, attention checks, EEG triggers, and behavioral recording in AVMoments-EEG.
 
-## Planned contents
+## Files
 
-- `run_experiment.py`: main experiment entry point.
-- `experiment_config.yaml`: paths, timing parameters, display settings, and run-level options.
+- `run_experiment.py`: main experiment script.
+- `trigger_codes.txt`: acquisition trigger definitions.
 
-## Expected inputs
+## Requirements
 
-- Stimulus files and their metadata.
-- A configuration file defining the experimental run.
+- Python 3.10 and PsychoPy 2024.2.4 (reported acquisition environment).
+- NumPy, OpenCV, and psutil.
+- A compatible parallel port and driver; check the configured address `0x3EFC` before running.
 
-## Expected outputs
+## Video files
 
-- Trial-level event logs.
-- Trigger and timing records needed to align the experiment with the EEG acquisition.
+Videos are provided separately. Place them under `Videos/` in this directory:
 
-## Reproducibility notes
+```text
+Videos/Exp1/type{1-16}/video_{1-56}.mp4
+Videos/Exp2/Cond{1-3}/type{1-16}/video_{1-4}.mp4
+```
 
-The public version should avoid machine-specific absolute paths. Keep participant identifiers, data locations, and run parameters in the configuration file rather than hard-coding them in the program.
+Braces indicate numeric ranges, not literal folder names. Cond1: intact audiovisual; Cond2: intact visual with scrambled audio; Cond3: scrambled visual with intact audio.
 
-The executable experiment files and usage command will be added after the original study code has been cleaned and checked for public release.
+## Run
+
+Run from this directory:
+
+```bash
+python run_experiment.py
+```
+
+Enter the requested participant information, run, and part. Use run `0` and part `0` for practice; formal runs are `1-8`, each with parts `1-3`. Instructions and attention questions are in Chinese.
+
+Space starts or resumes the experiment; during a video it requests a rest after the trial. Enter submits an attention response. Escape exits during video playback.
+
+## Outputs
+
+Behavioral CSV files and the participant-specific trial-list JSON are saved in `WatchVideo_csv_data/`. Keep the JSON across sessions to preserve the trial schedule. Reusing a participant/run/part filename appends to the existing CSV. Do not upload identifiable participant outputs to the code repository.
