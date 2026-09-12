@@ -73,7 +73,7 @@ cd experiment
 python run_experiment.py
 ```
 
-The script's instructions and attention questions are in Chinese. Videos are distributed separately; the program is configured for acquisition hardware and has no hardware-free demo mode.
+Videos are distributed separately; the program is configured for acquisition hardware and has no hardware-free demo mode.
 
 ### Preprocess EEG
 
@@ -97,7 +97,7 @@ The dependency versions document the local analysis environment used for the pac
 The data are currently shared through Baidu Netdisk while the formal data release is being prepared.
 
 - **Download:** [AVMoments-EEG_Data on Baidu Netdisk](https://pan.baidu.com/s/1cIBeChYEB0Tbyhax2TOlxA?pwd=nrmh)
-- **Access code (提取码):** `nrmh`
+- **Access code:** `nrmh`
 
 ### Formal release
 

@@ -14,7 +14,7 @@ port = parallel.ParallelPort(address=0x3EFC) # Create the parallel-port object.
 def send_triggers(value,duration=0.01):
     # Trigger values must be between 0 and 255.
     if not  0 <= value <= 255:
-        raise ValueError("Trigger value 必须在 0-255 之间")
+        raise ValueError("Trigger value must be between 0 and 255")
     port.setData(value)  # Set the trigger value.
     time.sleep(duration) # Hold the trigger value for the pulse duration.
     port.setData(0)      # Reset the port to zero.
@@ -27,7 +27,7 @@ def get_subj_info():
     gender = input("Subject Gender (m/f): ")
     age = input("Subject Age: ")
     run = input("Run(0/1/2/3/4/5/6/7/8): ")
-    part = input("Part(1/2/3, practice时填0): ")
+    part = input("Part(1/2/3, 0 for practice): ")
     return [subj_id, name, gender, age, run, part]
 
 #### define subject info:
@@ -246,10 +246,10 @@ def play_movie_without_response(movie,send_trigger_num):
 
 def input_movie_content(detection_type):
     if detection_type == "Detect1":
-        instruction = visual.TextStim(win, text="刚才视频里发生的动作是什么?",pos=(0, int(0.5 * scn_size[1] * 0.5)), height=int(0.6 * deg2pix), color="white")
+        instruction = visual.TextStim(win, text="What action occurred in the video?",pos=(0, int(0.5 * scn_size[1] * 0.5)), height=int(0.6 * deg2pix), color="white")
         input_box = visual.TextBox2(win, text="", font='Microsoft YaHei', pos=(0, 0), letterHeight=int(0.5 * deg2pix), size=(int(0.8 * scn_size[0]), int(0.2 * scn_size[1])),borderWidth=2, color='white', borderColor='gray', fillColor=background_color,editable=True)
     elif detection_type == "Detect2":
-        instruction = visual.TextStim(win, text="刚才视频里的主体是什么?", pos=(0, int(0.5 * scn_size[1] * 0.5)), height=int(0.6 * deg2pix), color="white")
+        instruction = visual.TextStim(win, text="What was the main agent or object in the video?", pos=(0, int(0.5 * scn_size[1] * 0.5)), height=int(0.6 * deg2pix), color="white")
         input_box = visual.TextBox2(win, text="", font='Microsoft YaHei', pos=(0, 0), letterHeight=int(0.5 * deg2pix), size=(int(0.8 * scn_size[0]), int(0.2 * scn_size[1])),borderWidth=2, color='white', borderColor='gray', fillColor=background_color,editable=True)
 
     event.clearEvents()
@@ -270,14 +270,14 @@ def load_all_videos(movie_paths):
     # preload all the movies  # movie_paths: path list of all the movies
     movie_list = []
     video_count = len(movie_paths)
-    print(f"加载视频 ({video_count}个)")
+    print(f"Loading videos ({video_count} files)")
 
     for path in movie_paths:
 
         movie = MovieStim(win, filename=path, size=8.4*deg2pix, loop=False) # Present all videos at a size of 8.4 degrees of visual angle.
         movie_list.append(movie)
 
-    print(f"加载完成")
+    print(f"Loading complete")
     return movie_list
 
 
@@ -288,7 +288,7 @@ def run_block(subj_info,session,Run_LIST,movie_path_list,trial_offset=0):
     # preload the movie
     all_movies = load_all_videos(movie_path_list)
 
-    show_text("视频加载完成，按空格开始实验", (fix_loc[0] - 0.5 * deg2pix * 2, fix_loc[1]))
+    show_text("Videos loaded. Press Space to start.", (fix_loc[0] - 0.5 * deg2pix * 2, fix_loc[1]))
     wait4key('space')
 
     # present the target
@@ -305,7 +305,7 @@ def run_block(subj_info,session,Run_LIST,movie_path_list,trial_offset=0):
 
         ## if rest
         if pause_info[0]:
-            show_text("休息一下，按空格继续", (fix_loc[0] - 0.5 * deg2pix * 3, fix_loc[1]))
+            show_text("Take a break. Press Space to continue.", (fix_loc[0] - 0.5 * deg2pix * 3, fix_loc[1]))
             wait4key('space')
 
         core.wait(random.uniform(0.1, 0.2))
@@ -329,14 +329,14 @@ def run_block(subj_info,session,Run_LIST,movie_path_list,trial_offset=0):
 #### real experiment starts here#######################################################################################################################################################################
 
 #### prepare for the task
-show_text("请自由观看视频，并回答视频后的内容。自行按空格键休息。", (fix_loc[0]-0.5*deg2pix*3,fix_loc[1]))
+show_text("Watch the videos freely and answer the questions that follow. Press Space during a video to request a break.", (fix_loc[0]-0.5*deg2pix*3,fix_loc[1]))
 wait4key('space')
 
 #### run Sessions
 ## Practice
 if RUN == 0:  ## run = 0
     run_block(SUBJ_INFO, RUN, Mixed_Sessions[0]["trials"][:20], Mixed_Sessions[0]["paths"][:20])
-    show_text("练习任务结束", (fix_loc[0] - 0.5 * deg2pix * 1, fix_loc[1]))
+    show_text("Practice complete.", (fix_loc[0] - 0.5 * deg2pix * 1, fix_loc[1]))
     wait4key('space')
 
 ## Real Experiment Start Here
@@ -362,10 +362,10 @@ else:
         Movie_LIST[start:end],
         trial_offset=trial_offset)
 
-    show_text(f"Session {RUN} Part {PART} 结束", fix_loc)
+    show_text(f"Session {RUN} Part {PART} complete", fix_loc)
     wait4key('space')
 
-    show_text("辛苦啦，任务结束", (fix_loc[0] - 0.5 * deg2pix * 1, fix_loc[1]))
+    show_text("Thank you. The experiment is complete.", (fix_loc[0] - 0.5 * deg2pix * 1, fix_loc[1]))
     wait4key('space')
 
 

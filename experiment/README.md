@@ -32,7 +32,7 @@ Run from this directory:
 python run_experiment.py
 ```
 
-Enter the requested participant information, run, and part. Use run `0` and part `0` for practice; formal runs are `1-8`, each with parts `1-3`. Instructions and attention questions are in Chinese.
+Enter the requested participant information, run, and part. Use run `0` and part `0` for practice; formal runs are `1-8`, each with parts `1-3`.
 
 Space starts or resumes the experiment; during a video it requests a rest after the trial. Enter submits an attention response. Escape exits during video playback.
 
