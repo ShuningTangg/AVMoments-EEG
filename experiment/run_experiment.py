@@ -1,26 +1,26 @@
 #!/usr/bin/env python
 
-####import libraries：导入库
+# Import libraries.
 import sys,random,os,copy,time,json,numpy,cv2,psutil,gc
 from psychopy import visual, core, event,monitors,parallel
 from sys import maxsize
 from math import atan,pi,sin, cos
 from psychopy.visual.movies import MovieStim
 
-# 检查并口设备
-port = parallel.ParallelPort(address=0x3EFC) #创建并口对象
+# Initialize the parallel-port interface.
+port = parallel.ParallelPort(address=0x3EFC) # Create the parallel-port object.
 
-# 定义发送数据到并口设备
+# Send a trigger pulse through the parallel port.
 def send_triggers(value,duration=0.01):
-    ## trigger 数字必须在0-255之间
+    # Trigger values must be between 0 and 255.
     if not  0 <= value <= 255:
         raise ValueError("Trigger value 必须在 0-255 之间")
-    port.setData(value)  #发trigger
-    time.sleep(duration) #高电位持续时间
-    port.setData(0)      #清零恢复低电平
+    port.setData(value)  # Set the trigger value.
+    time.sleep(duration) # Hold the trigger value for the pulse duration.
+    port.setData(0)      # Reset the port to zero.
 
 #### Data manipulation functions####################################################
-#get subject info：收集被试信息
+# Collect participant information.
 def get_subj_info():
     subj_id = input("Subject ID: ")
     name = input("Subject Name: ")
@@ -36,7 +36,7 @@ RUN = int(SUBJ_INFO[4])
 PART = int(SUBJ_INFO[5])
 SUBJ_NUM  = int(SUBJ_INFO[0])
 
-#create data files:创建文件夹
+# Create the output directory and initialize the behavioral CSV.
 def init_data_file(SUBJ_INFO):
     """ define a function that initializes the data file and get sub_info"""
     if not os.path.exists("WatchVideo_csv_data"): os.mkdir("WatchVideo_csv_data")
@@ -49,20 +49,20 @@ def init_data_file(SUBJ_INFO):
 #### initialize the data files.
 init_data_file(SUBJ_INFO)
 
-####视角转换
+# Convert between viewing geometry and visual angle.
 view_distance = 60#cm
 scn_width_cm = 54.0 #cm
 scn_size = (1920,1080)
 
-#屏幕对应视角
+# Calculate the visual angle subtended by the screen.
 #scn_width_deg = (scn_width_cm/view_distance)*(180/pi)   # method1
 scn_width_deg = 2 * atan(scn_width_cm/(2*view_distance))*(180/pi)  # method2
 
-#一度视角对应多少像素
+# Calculate the number of pixels per degree of visual angle.
 deg2pix = int(scn_size[0]/scn_width_deg)
 print(scn_width_deg,deg2pix)
 
-####some constants: 定义几个常量
+# Define display constants.
 fix_loc = (0,0)
 background_color = [0,0,0] # gray
 
@@ -213,7 +213,7 @@ def find_trigger_number(trial):
 def play_movie_without_response(movie,send_trigger_num):
 
     movie.seek(0)
-    event.clearEvents()  # 等待被试反应的期间确保之前所有的event都被清空,以防之前的按键等影响当前事件
+    event.clearEvents()  # Clear buffered key events so previous key presses do not affect this trial.
     trigger_sent = False
     pause = False
     pause_time = None
@@ -260,7 +260,7 @@ def input_movie_content(detection_type):
 
         keys = event.getKeys()
         if 'return' in keys or 'enter' in keys:
-            # 提交输入
+            # Submit the typed response.
             final_text = input_box.text.strip() or "Missing Answer"
             break
 
@@ -274,7 +274,7 @@ def load_all_videos(movie_paths):
 
     for path in movie_paths:
 
-        movie = MovieStim(win, filename=path, size=8.4*deg2pix, loop=False) #修改成统一尺寸8.4°
+        movie = MovieStim(win, filename=path, size=8.4*deg2pix, loop=False) # Present all videos at a size of 8.4 degrees of visual angle.
         movie_list.append(movie)
 
     print(f"加载完成")
@@ -299,7 +299,7 @@ def run_block(subj_info,session,Run_LIST,movie_path_list,trial_offset=0):
         pause_info = play_movie_without_response(all_movies[count], send_trigger_num = trigger_number)
 
         # detect movie content
-        Detection_Resp = None  # 不需要detection的trial默认返回none
+        Detection_Resp = None  # Use None for trials without an attention check.
         if trial[3] in ("Detect1", "Detect2"):
             Detection_Resp = input_movie_content(trial[3])
 
@@ -312,7 +312,7 @@ def run_block(subj_info,session,Run_LIST,movie_path_list,trial_offset=0):
 
         trial_num = trial_offset + count + 1
 
-        # write data to file写入数据  # 还需要补充：绝对时间，当前trial试次
+        # Write the behavioral record, including the trial number and absolute start time.
         data_file = open("WatchVideo_csv_data/" + SUBJ_INFO[0] + "_" + SUBJ_INFO[1] + "_" + SUBJ_INFO[4] + "_" + SUBJ_INFO[5] + ".csv", "a",encoding="utf-8")
         trial_data = subj_info  + [session] + [trial_num] + trial + [trigger_number] + [Detection_Resp] + pause_info + [trial_start_time]
         trial_data_1 = ",".join(map(str,trial_data)) + "\n"
