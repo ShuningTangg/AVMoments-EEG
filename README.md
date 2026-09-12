@@ -8,7 +8,7 @@ Shuning Tang · Zitong Lu · Leiting Li · Dongwei Li
 
 **10 participants · 64 channels · 960 video identities · 16 event categories**
 
-Experiment and preprocessing code available · Zenodo data release in preparation
+Experiment and preprocessing code available · Temporary data download available · Zenodo release in preparation
 
 [Overview](#overview) · [Experimental design](#experimental-design) · [Code](#code) · [Getting started](#getting-started) · [Data access](#data-access) · [Citation](#citation)
 
@@ -53,7 +53,7 @@ AVMoments-EEG/
 
 **[Preprocessing](preprocessing/README.md)** — MNE-Python filtering, bad-channel interpolation, epoching, ICA, mastoid referencing, and export of session-level and participant-level NoReject epochs.
 
-**Current scope:** fixed trial alignment, stimulus-level ERP construction, final BIDS release preparation, and the manuscript's technical validation analyses are not yet included in this repository.
+**Current scope:** This repository contains the experiment script and EEG preprocessing notebook.
 
 ## Getting started
 
@@ -92,9 +92,18 @@ The dependency versions document the local analysis environment used for the pac
 
 ## Data access
 
-**Release status: in preparation.** The Zenodo dataset has not yet been published.
+### Temporary download
 
-**Reserved dataset DOI:** `10.5281/zenodo.22227356`. A public download link will be added after publication.
+The data are currently shared through Baidu Netdisk while the formal data release is being prepared.
+
+- **Download:** [AVMoments-EEG_Data on Baidu Netdisk](https://pan.baidu.com/s/1cIBeChYEB0Tbyhax2TOlxA?pwd=nrmh)
+- **Access code (提取码):** `nrmh`
+
+### Formal release
+
+The Zenodo dataset has not yet been published. The formal data link will be added here once it is available.
+
+**Reserved dataset DOI:** `10.5281/zenodo.22227356`.
 
 The data archive is separate from this code repository and is organized into:
 
