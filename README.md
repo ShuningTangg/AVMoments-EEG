@@ -53,8 +53,6 @@ AVMoments-EEG/
 
 **[Preprocessing](preprocessing/README.md)** — MNE-Python filtering, bad-channel interpolation, epoching, ICA, mastoid referencing, and export of session-level and participant-level NoReject epochs.
 
-**Current scope:** This repository contains the experiment script and EEG preprocessing notebook.
-
 ## Getting started
 
 Clone the repository:
@@ -87,8 +85,6 @@ python -m pip install -r requirements.txt
 Open [preprocess_eeg.ipynb](preprocessing/preprocess_eeg.ipynb) in a Jupyter-compatible editor, with `preprocessing/` as the working directory. Set `DATA_ROOT`, `OUTPUT_ROOT`, and the participant settings, then follow the numbered cells.
 
 The default participant is `sub-003zgf`. ICA exclusions require manual review. This notebook reads BrainVision annotations and does not apply label corrections stored only in `_events.tsv`; see the preprocessing README before using recordings from the first two participants.
-
-The dependency versions document the local analysis environment used for the packaging checks. A limited data-reading and epoch-export check has been completed; the full eight-session pipeline has not been rerun for this code release.
 
 ## Data access
 
