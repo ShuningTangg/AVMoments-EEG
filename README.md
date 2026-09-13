@@ -98,15 +98,14 @@ The Zenodo dataset has not yet been published. The formal data link will be adde
 
 For the Chinese community, we also provide a [Baidu Netdisk link](https://pan.baidu.com/s/1JV4HvoSmkXrRnId3lX5pDA?pwd=sxx3) (access code: `sxx3`).
 
-The data archive is separate from this code repository and is organized into:
+The dataset includes the following components, distributed separately from this code repository:
 
+- `Video stimuli`: Due to licensing restrictions, access to the video stimuli used in this study can be obtained by contacting the corresponding authors (zitonglu@mit.edu or DongweiLi@bnu.edu.cn).
 - `BIDS_Data/`: continuous BrainVision EEG, behavioral records, available ECG recordings, and metadata.
 - `Epochs/`: session-level and post-ICA epoch derivatives in FIF and NumPy formats.
 - `Re-arranged_Stimulus-Level_ERPs/`: responses averaged by video identity, with labels and channel names.
 
 For data reuse, consult the archive's README and LICENSE. Trial-grid placeholders labeled `s9999` are not recorded EEG and must be excluded from analyses.
-
-**Video stimuli:** Due to licensing restrictions, access to the video stimuli used in this study can be obtained by contacting the corresponding authors (zitonglu@mit.edu or DongweiLi@bnu.edu.cn).
 
 ## Citation
 
