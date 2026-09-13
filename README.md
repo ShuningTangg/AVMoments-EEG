@@ -8,7 +8,7 @@ Shuning Tang · Zitong Lu · Leiting Li · Dongwei Li
 
 **10 participants · 64 channels · 960 video identities · 16 event categories**
 
-Experiment and preprocessing code available · Temporary data download available · Zenodo release in preparation
+Experiment and preprocessing code available · Baidu Netdisk data access available · Zenodo release in preparation
 
 [Overview](#overview) · [Experimental design](#experimental-design) · [Code](#code) · [Getting started](#getting-started) · [Data access](#data-access) · [Citation](#citation)
 
@@ -92,12 +92,12 @@ The dependency versions document the local analysis environment used for the pac
 
 ## Data access
 
-### Temporary download
+### Baidu Netdisk (Chinese community)
 
-The data are currently shared through Baidu Netdisk while the formal data release is being prepared.
+For the Chinese community, we also provide a Baidu Netdisk link:
 
-- **Download:** [AVMoments-EEG_Data on Baidu Netdisk](https://pan.baidu.com/s/1cIBeChYEB0Tbyhax2TOlxA?pwd=nrmh)
-- **Access code:** `nrmh`
+- **Download:** [AVMoments-EEG_Data on Baidu Netdisk](https://pan.baidu.com/s/1JV4HvoSmkXrRnId3lX5pDA?pwd=sxx3)
+- **Access code:** `sxx3`
 
 ### Formal release
 
@@ -113,7 +113,7 @@ The data archive is separate from this code repository and is organized into:
 
 For data reuse, consult the archive's README and LICENSE. Trial-grid placeholders labeled `s9999` are not recorded EEG and must be excluded from analyses.
 
-**Video stimuli:** videos are not included in this GitHub repository or the public data package. Access requests should be directed to the corresponding authors because the stimuli have separate licensing conditions.
+**Video stimuli:** Due to licensing restrictions, access to the video stimuli used in this study can be obtained by contacting the corresponding authors (zitonglu@mit.edu or DongweiLi@bnu.edu.cn).
 
 ## Citation
 
