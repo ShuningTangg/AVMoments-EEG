@@ -92,18 +92,11 @@ The dependency versions document the local analysis environment used for the pac
 
 ## Data access
 
-### Baidu Netdisk (Chinese community)
-
-For the Chinese community, we also provide a Baidu Netdisk link:
-
-- **Download:** [AVMoments-EEG_Data on Baidu Netdisk](https://pan.baidu.com/s/1JV4HvoSmkXrRnId3lX5pDA?pwd=sxx3)
-- **Access code:** `sxx3`
-
-### Formal release
-
 The Zenodo dataset has not yet been published. The formal data link will be added here once it is available.
 
 **Reserved dataset DOI:** `10.5281/zenodo.22227356`.
+
+For the Chinese community, we also provide a [Baidu Netdisk link](https://pan.baidu.com/s/1JV4HvoSmkXrRnId3lX5pDA?pwd=sxx3) (access code: `sxx3`).
 
 The data archive is separate from this code repository and is organized into:
 
