@@ -8,7 +8,7 @@ Shuning Tang · Zitong Lu · Leiting Li · Dongwei Li
 
 **10 participants · 64 channels · 960 video identities · 16 event categories**
 
-Experiment and preprocessing code available · Baidu Netdisk data access available · Zenodo release in preparation
+Experiment and preprocessing code available · Baidu Netdisk data access available
 
 [Overview](#overview) · [Experimental design](#experimental-design) · [Code](#code) · [Getting started](#getting-started) · [Data access](#data-access) · [Citation](#citation)
 
@@ -88,9 +88,7 @@ The default participant is `sub-003zgf`. ICA exclusions require manual review. T
 
 ## Data access
 
-The Zenodo dataset has not yet been published. The formal data link will be added here once it is available.
-
-**Reserved dataset DOI:** `10.5281/zenodo.22227356`.
+**Dataset DOI:** [10.5281/zenodo.22227356](https://doi.org/10.5281/zenodo.22227356).
 
 For the Chinese community, we also provide a [Baidu Netdisk link](https://pan.baidu.com/s/1JV4HvoSmkXrRnId3lX5pDA?pwd=sxx3) (access code: `sxx3`).
 
@@ -109,7 +107,7 @@ When using the data or code, cite the dataset record and the accompanying manusc
 
 > Tang, S., Lu, Z., Li, L., & Li, D. *AVMoments-EEG: A Large-Scale EEG Dataset of Naturalistic Audiovisual Event Perception.*
 
-The manuscript citation will be updated with its publication details when available. After the data release, use the citation exported by Zenodo for the dataset version you use. For code reproducibility, also record the Git commit used in your analysis.
+The manuscript citation will be updated with its publication details when available. Use the citation exported by Zenodo for the dataset version you use. For code reproducibility, also record the Git commit used in your analysis.
 
 ## Contact
 
